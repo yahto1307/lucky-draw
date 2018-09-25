@@ -13,6 +13,8 @@ public class PrizePool implements Serializable {
 
     private Integer total;
 
+    private Long activityId;
+
     private List<PrizePoolBean> poolBeanList;
 
     public Integer getTotal() {
@@ -21,6 +23,14 @@ public class PrizePool implements Serializable {
 
     public void setTotal(Integer total) {
         this.total = total;
+    }
+
+    public Long getActivityId() {
+        return activityId;
+    }
+
+    public void setActivityId(Long activityId) {
+        this.activityId = activityId;
     }
 
     public List<PrizePoolBean> getPoolBeanList() {

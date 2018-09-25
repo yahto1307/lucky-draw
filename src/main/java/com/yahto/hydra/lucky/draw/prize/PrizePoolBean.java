@@ -9,6 +9,7 @@ public class PrizePoolBean {
     private Long id;
     private Integer begin;
     private Integer end;
+    private Integer count;
 
     public Long getId() {
         return id;
@@ -32,5 +33,13 @@ public class PrizePoolBean {
 
     public void setEnd(Integer end) {
         this.end = end;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
     }
 }

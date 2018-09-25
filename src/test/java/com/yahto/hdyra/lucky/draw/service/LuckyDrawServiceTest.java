@@ -2,6 +2,7 @@ package com.yahto.hdyra.lucky.draw.service;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.yahto.hydra.lucky.draw.model.DrawResult;
+import com.yahto.hydra.lucky.draw.service.LuckDrawRedisService;
 import com.yahto.hydra.lucky.draw.service.LuckyDrawService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,17 +22,17 @@ import java.util.concurrent.*;
 public class LuckyDrawServiceTest {
 
     private static ThreadFactory namedThreadFactory = new ThreadFactoryBuilder().setNameFormat("demo-pool-%d").build();
-    private static ExecutorService executorService = new ThreadPoolExecutor(20000, 20000,
+    private static ExecutorService executorService = new ThreadPoolExecutor(1000, 1000,
             0L, TimeUnit.MILLISECONDS,
-            new LinkedBlockingDeque<>(20480), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
+            new LinkedBlockingDeque<>(1024), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
     @Autowired
-    private LuckyDrawService luckyDrawService;
+    private LuckDrawRedisService luckyDrawService;
 
-    private CountDownLatch countDownLatch = new CountDownLatch(20000);
+    private CountDownLatch countDownLatch = new CountDownLatch(1000);
 
     @Test
     public void luckyDraw() throws InterruptedException {
-        for (int i = 0; i < 20000; i++) {
+        for (int i = 0; i < 1000; i++) {
             executorService.execute(() -> {
                 countDownLatch.countDown();
                 DrawResult drawResult = luckyDrawService.luckyDraw(1L, 12311L);
@@ -39,6 +40,5 @@ public class LuckyDrawServiceTest {
             });
         }
         countDownLatch.await();
-        Thread.sleep(50000);
     }
 }

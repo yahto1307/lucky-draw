@@ -14,16 +14,16 @@
 
     <bean id="redisConnectionFactory"
           class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
-        <property name="usePool" value="true"></property>
+        <property name="usePool" value="true"/>
         <property name="hostName" value="${cache.redis.host}"/>
         <property name="port" value="${cache.redis.port}"/>
         <property name="password" value="${cache.redis.password}"/>
         <property name="timeout" value="${cache.redis.timeout}"/>
-        <property name="database" value="${cache.redis.db}"></property>
+        <property name="database" value="${cache.redis.db}"/>
         <constructor-arg index="0" ref="jedisPoolConfig"/>
     </bean>
 
-    <bean id="redisCache" class="org.springframework.data.redis.core.RedisTemplate">
+    <bean id="redisCache" class="org.springframework.data.redis.core.StringRedisTemplate">
         <property name="connectionFactory" ref="redisConnectionFactory"/>
         <property name="keySerializer" ref="stringRedisSerializer"/>
         <property name="valueSerializer" ref="stringRedisSerializer"/>

@@ -2,7 +2,7 @@ package com.yahto.hydra.lucky.draw.service.impl;
 
 import com.yahto.hydra.lucky.draw.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,10 +13,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class RedisServiceImpl implements RedisService {
     @Autowired
-    RedisTemplate redisTemplate;
+    StringRedisTemplate redisTemplate;
 
     @Override
     public void set(String key, String value) {
         redisTemplate.opsForValue().set(key, value);
+    }
+
+    @Override
+    public boolean setPrizeCount(String key, Long itemId, Integer count) {
+        return redisTemplate.opsForZSet().add(key, itemId.toString(), count.doubleValue());
+    }
+
+    @Override
+    public Double countDownPrize(String key, Long itemId, Long countDownNum) {
+        return redisTemplate.opsForZSet().incrementScore(key, itemId.toString(), -countDownNum);
     }
 }

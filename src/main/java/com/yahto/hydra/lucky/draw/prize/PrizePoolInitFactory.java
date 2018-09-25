@@ -22,6 +22,7 @@ public class PrizePoolInitFactory {
             prizePoolBean.setBegin(total);
             total += item.getProbability();
             prizePoolBean.setEnd(total);
+            prizePoolBean.setCount(item.getTotalCount());
             poolBeanList.add(prizePoolBean);
         }
         PrizePool prizePool = new PrizePool();
