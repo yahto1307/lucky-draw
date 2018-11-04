@@ -25,7 +25,7 @@ import java.util.*;
  *
  * @author yahto
  */
-@Service
+@Service("luckyDrawServiceImpl")
 public class LuckyDrawServiceImpl implements LuckyDrawService {
     @Autowired
     private DrawResultDao drawResultDao;

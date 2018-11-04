@@ -13,7 +13,7 @@ import com.yahto.hydra.lucky.draw.model.ItemExample;
 import com.yahto.hydra.lucky.draw.prize.PrizePool;
 import com.yahto.hydra.lucky.draw.prize.PrizePoolBean;
 import com.yahto.hydra.lucky.draw.prize.PrizePoolInitFactory;
-import com.yahto.hydra.lucky.draw.service.LuckDrawRedisService;
+import com.yahto.hydra.lucky.draw.service.LuckyDrawService;
 import com.yahto.hydra.lucky.draw.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,8 +29,8 @@ import java.util.concurrent.*;
  *
  * @author yahto
  */
-@Service
-public class LuckDrawRedisServiceImpl implements LuckDrawRedisService {
+@Service("luckDrawRedisServiceImpl")
+public class LuckDrawRedisServiceImpl implements LuckyDrawService {
     @Autowired
     private RedisService redisService;
 
