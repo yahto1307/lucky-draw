@@ -29,4 +29,9 @@ public class RedisServiceImpl implements RedisService {
     public Double countDownPrize(String key, Long itemId, Long countDownNum) {
         return redisTemplate.opsForZSet().incrementScore(key, itemId.toString(), -countDownNum);
     }
+
+    @Override
+    public boolean getDistributedLock(String lockString) {
+        return false;
+    }
 }

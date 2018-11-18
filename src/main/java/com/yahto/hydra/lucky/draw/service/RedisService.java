@@ -27,10 +27,18 @@ public interface RedisService {
     /**
      * 减少商品数量
      *
-     * @param key redis key
-     * @param itemId 奖品Id
+     * @param key          redis key
+     * @param itemId       奖品Id
      * @param countDownNum 需要减少的数量
      * @return 减少后的剩余数量
      */
     Double countDownPrize(String key, Long itemId, Long countDownNum);
+
+    /**
+     * 获取分布式锁
+     *
+     * @param lockString 随机字符串
+     * @return
+     */
+    boolean getDistributedLock(String lockString);
 }
