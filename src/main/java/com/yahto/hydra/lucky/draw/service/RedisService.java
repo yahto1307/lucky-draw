@@ -37,8 +37,18 @@ public interface RedisService {
     /**
      * 获取分布式锁
      *
-     * @param lockString 随机字符串
+     * @param lockKey     分布式锁的key
+     * @param randomValue 随机字符串
      * @return
      */
-    boolean getDistributedLock(String lockString);
+    boolean getDistributedLock(String lockKey, String randomValue);
+
+    /**
+     * 释放分布式锁
+     *
+     * @param lockKey 分布式锁的key 必须和设置锁的key一致
+     * @param randomValue 随机字符串 必须和设置锁的value一致
+     * @return
+     */
+    boolean releaseDistributedLock(String lockKey, String randomValue);
 }
