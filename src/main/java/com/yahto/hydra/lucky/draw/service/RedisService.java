@@ -46,7 +46,7 @@ public interface RedisService {
     /**
      * 释放分布式锁
      *
-     * @param lockKey 分布式锁的key 必须和设置锁的key一致
+     * @param lockKey     分布式锁的key 必须和设置锁的key一致
      * @param randomValue 随机字符串 必须和设置锁的value一致
      * @return
      */
