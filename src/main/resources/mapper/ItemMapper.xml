@@ -72,8 +72,8 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    id, name, total_count, left_count, probability, activity_id, create_at, update_at
-  </sql>
+        id, name, total_count, left_count, probability, activity_id, create_at, update_at
+    </sql>
     <select id="selectByExample" parameterType="com.yahto.hydra.lucky.draw.model.ItemExample" resultMap="BaseResultMap">
         select
         <if test="distinct">
@@ -95,9 +95,10 @@
         where id = #{id,jdbcType=BIGINT}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from tb_item
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
+        delete
+        from tb_item
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
     <delete id="deleteByExample" parameterType="com.yahto.hydra.lucky.draw.model.ItemExample">
         delete from tb_item
         <if test="_parameter != null">
@@ -105,13 +106,13 @@
         </if>
     </delete>
     <insert id="insert" parameterType="com.yahto.hydra.lucky.draw.model.Item">
-    insert into tb_item (id, name, total_count, 
-      left_count, probability, activity_id, 
-      create_at, update_at)
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{totalCount,jdbcType=INTEGER}, 
-      #{leftCount,jdbcType=INTEGER}, #{probability,jdbcType=BIGINT}, #{activityId,jdbcType=BIGINT}, 
-      #{createAt,jdbcType=TIMESTAMP}, #{updateAt,jdbcType=TIMESTAMP})
-  </insert>
+        insert into tb_item (id, name, total_count,
+                             left_count, probability, activity_id,
+                             create_at, update_at)
+        values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{totalCount,jdbcType=INTEGER},
+                #{leftCount,jdbcType=INTEGER}, #{probability,jdbcType=BIGINT}, #{activityId,jdbcType=BIGINT},
+                #{createAt,jdbcType=TIMESTAMP}, #{updateAt,jdbcType=TIMESTAMP})
+    </insert>
     <insert id="insertSelective" parameterType="com.yahto.hydra.lucky.draw.model.Item">
         insert into tb_item
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -248,20 +249,21 @@
         where id = #{id,jdbcType=BIGINT}
     </update>
     <update id="reduceItemCount">
-        update tb_item ti set ti.left_count = ti.left_count - 1
+        update tb_item ti
+        set ti.left_count = ti.left_count - 1
         where ti.id = #{id,jdbcType=BIGINT}
-        and ti.activity_id = #{activityId,jdbcType=BIGINT}
-        and ti.left_count > 0
+          and ti.activity_id = #{activityId,jdbcType=BIGINT}
+          and ti.left_count > 0
     </update>
     <update id="updateByPrimaryKey" parameterType="com.yahto.hydra.lucky.draw.model.Item">
-    update tb_item
-    set name = #{name,jdbcType=VARCHAR},
-      total_count = #{totalCount,jdbcType=INTEGER},
-      left_count = #{leftCount,jdbcType=INTEGER},
-      probability = #{probability,jdbcType=BIGINT},
-      activity_id = #{activityId,jdbcType=BIGINT},
-      create_at = #{createAt,jdbcType=TIMESTAMP},
-      update_at = #{updateAt,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
+        update tb_item
+        set name        = #{name,jdbcType=VARCHAR},
+            total_count = #{totalCount,jdbcType=INTEGER},
+            left_count  = #{leftCount,jdbcType=INTEGER},
+            probability = #{probability,jdbcType=BIGINT},
+            activity_id = #{activityId,jdbcType=BIGINT},
+            create_at   = #{createAt,jdbcType=TIMESTAMP},
+            update_at   = #{updateAt,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
 </mapper>

@@ -22,7 +22,7 @@ public class PrizeKillByRedisLockImpl implements PrizeKillService {
     public KillResult prizeKill(Long killItemId, Long userId) {
         try {
             String randomString = UUID.randomUUID().toString();
-            if (redisService.getDistributedLock(randomString)) {
+            if (redisService.getDistributedLock("",randomString)) {
 
             }
         } catch (Exception e) {
